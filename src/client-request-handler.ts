@@ -103,7 +103,7 @@ export default abstract class MBClientRequestHandler<S extends Stream.Duplex, Re
       debug('response is a exception')
       userRequest.reject(new UserRequestError({
         err: MODBUS_EXCEPTION,
-        message: `A Modbus Exception Occurred - See Response Body`,
+        message: `ModbusException: ${response.body.message} (${response.body.code})`,
         request,
         response
       }))
