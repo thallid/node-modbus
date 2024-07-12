@@ -6,6 +6,11 @@ const netServer = new net.Server()
 const holding = Buffer.alloc(10000)
 const server = new modbus.server.TCP(netServer, {
   holding: holding
+  /* Set the buffer options to undefined to use the events */
+  /* coils: undefined */
+  /* discrete: undefined */
+  /* holding: undefined */
+  /* input: undefined */
 })
 
 server.on('connection', function (client) {
@@ -13,7 +18,7 @@ server.on('connection', function (client) {
 })
 
 server.on('readCoils', function (request, response, send) {
-  /* Implement your own */
+  /* Implement your own, set coil to undefined in server options to use coil events */
 
   response.body.coils[0] = true
   response.body.coils[1] = false
@@ -23,7 +28,7 @@ server.on('readCoils', function (request, response, send) {
 
 server.on('readHoldingRegisters', function (request, response, send) {
 
-  /* Implement your own */
+  /* Implement your own, set holding to undefined in server options to use holding events */
 
 })
 
